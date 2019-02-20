@@ -55,6 +55,19 @@ public class Board {
 				  }
 			 return peca (posicao) != null;
 		  }
+		  public Peca removerPeca(Posicao posicao) {
+			  if(!posicaoExistente(posicao)) {
+				  throw new BoardException("ERRO DE POSICAO : Posicao não existe no tabuleiro  ");
+			  }
+			  if (peca(posicao)== null ) {
+				  return null;
+			  }
+			  Peca aux = peca(posicao);
+			  aux.posicao = null;
+			  pecas[posicao.getRow()][posicao.getColumn()] = null ;
+			  return aux;
+		  }
+		  
 	  }
 	  
 			  

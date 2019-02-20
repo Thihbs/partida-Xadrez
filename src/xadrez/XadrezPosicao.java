@@ -23,15 +23,15 @@ public int getRow() {
 }
 
 protected  Posicao toPosicao() {
-	return new Posicao (8 - row , column - 'a');
+	return new Posicao (8 - row,column - 'a');
 }
 protected static XadrezPosicao fromPosicao(Posicao posicao) {
-	return new XadrezPosicao ((char)( 'a' - posicao.getColumn()), 8 - posicao.getRow());
+	return new XadrezPosicao ((char)('a' - posicao.getColumn()),8 - posicao.getRow());
 }
 
 @Override
 public String toString ( ) {
-	return "" + column + row ;
+	return "" + column +row ;
 }
 }
 	   

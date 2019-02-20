@@ -1,7 +1,11 @@
 package aplication;
 
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 import xadrez.Cor;
 import xadrez.PecadeXadrez;
+import xadrez.XadrezPosicao;
 
 public class UI {
 
@@ -24,6 +28,20 @@ public class UI {
 	public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
 	public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 
+	public static XadrezPosicao lerPosicao(Scanner sc) {
+		try {
+			String s = sc.nextLine();
+			char column = s.charAt(0);
+			int row = Integer.parseInt(s.substring(1));
+			return new XadrezPosicao(column, row);
+			
+		} 
+		catch (RuntimeException e) {
+			throw new InputMismatchException("Erro de posicao : Entrar com posicao valida expl > A1 ");
+
+		}
+	}
+
 	public static void printBoard(PecadeXadrez[][] pecas) {
 		for (int i = 0; i < pecas.length; i++) {
 			System.out.print((8 - i) + " ");
@@ -37,16 +55,17 @@ public class UI {
 
 	private static void printPeca(PecadeXadrez peca) {
 		if (peca == null) {
-            System.out.print("-");
-        }
-        else {
-            if (peca.getCor() == Cor.WHITE) {
-                System.out.print(ANSI_WHITE + peca + ANSI_RESET);
-            }
-            else {
-                System.out.print(ANSI_RED + peca + ANSI_RESET);
-            }
+			System.out.print("-");
+		} 
+		else {
+			if (peca.getCor() == Cor.WHITE) {
+				System.out.print(ANSI_WHITE + peca + ANSI_RESET);
+			} 
+			else {
+				System.out.print(ANSI_YELLOW + peca + ANSI_RESET);
+			}
+		}
 		System.out.print(" ");
 	}
 
-}}
+}
